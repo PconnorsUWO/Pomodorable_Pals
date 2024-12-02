@@ -87,7 +87,7 @@ public class Save extends JPanel {
     }
 
     public Pet loadPetData(String petName) {
-        try (BufferedReader br = new BufferedReader(new FileReader("data_handling/pets_data.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("../data_handling/pets_data.csv"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(",");
