@@ -54,7 +54,10 @@ public class Save extends JPanel {
         // Save Button
         gbc.gridy++;
         JButton saveGameButton = createButton("Save Game");
-        saveGameButton.addActionListener(e -> System.out.println("Save Game button clicked"));
+        saveGameButton.addActionListener(e -> {
+            GameManager.getInstance().saveGame();
+            System.out.println("Save Game button clicked");
+        });
         add(saveGameButton, gbc);
 
         // Load Button
@@ -101,12 +104,17 @@ public class Save extends JPanel {
             switch (pet.getPetType()) {
                 case 0:
                     gameManager = new GameManager(input, type);
+                    GameManager.setInstance(gameManager);
+                    System.out.println(GameManager.getInstance().getCurrentPet().getName());
                     break;
                 case 1:
                     gameManager = new GameManager(input, type);
+                    GameManager.setInstance(gameManager);
+
                     break;
                 case 2:
                     gameManager = new GameManager(input, type);
+                    GameManager.setInstance(gameManager);
                     break;
                 default:
                     System.err.println("Invalid pet type!");

@@ -13,6 +13,7 @@ import javax.swing.event.AncestorEvent;
 
 public class GameScreen extends JPanel {
     private BufferedImage background;
+    private GameManager gameManager;
     private JPanel mainPanel;
     private CardLayout cardLayout;
     private Timer fadeTimer;
@@ -39,6 +40,7 @@ public class GameScreen extends JPanel {
         this.mainPanel = mainPanel;
         this.settings = Settings.getInstance();
         this.petType = GameManager.getInstance().getCurrentPet().getPetType();
+        this.gameManager = GameManager.getInstance();
 
         // Load background image
         try {
@@ -308,6 +310,7 @@ public class GameScreen extends JPanel {
         // Default position and size
         sleepButton.setBounds(1100, 100, 200, 200); // on the screen
         sleepButton.addActionListener(e -> {
+            gameManager.sleepPet();
             System.out.println("Sleep button clicked!");
 
             revalidate();
@@ -369,6 +372,7 @@ public class GameScreen extends JPanel {
         // Default position and size
         exerciseButton.setBounds(300, 100, 200, 200); // on the screen
         exerciseButton.addActionListener(e -> {
+            gameManager.exercisePet();
             System.out.println("Exercise button clicked!");
 
             revalidate();

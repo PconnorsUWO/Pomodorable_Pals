@@ -191,7 +191,7 @@ public class ChoosePet extends JPanel {
     private void showPopUp(String imagePath, String placeholder, int petType) {
         PopUp popup = new PopUp(parentFrame, imagePath, placeholder, e -> {
             String input = e.getActionCommand().trim();
-            System.out.println("User input: " + input);
+            System.out.println(input);
 
             // Use GameManager to manage the pet creation
             switch (petType) {
