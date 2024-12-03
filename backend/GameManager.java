@@ -21,7 +21,7 @@ public class GameManager {
 
     public static GameManager getInstance() {
         if (instance == null) {
-            instance = new GameManager("Buddy", 1); // Default pet for example
+            instance = new GameManager("Fluffy", 1); // Default pet for example
         }
         return instance;
     }
