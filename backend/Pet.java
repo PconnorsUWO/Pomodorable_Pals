@@ -117,7 +117,7 @@ public class Pet {
             }
 
             if (!updated) {
-                lines.add(String.format("%s,%d,%d,%d,%d,%d,%d,%d",
+                lines.add(String.format("%s,%d,%d,%d,%d,%d,%d,%d,%s",
                         name,
                         petType,
                         health,
@@ -125,7 +125,8 @@ public class Pet {
                         fullness,
                         happiness,
                         sleepEffectiveness,
-                        playEffectiveness));
+                        playEffectiveness,
+                        '"' + "Food: 1, Gift: 1" + '"'));
             }
         } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
@@ -133,7 +134,7 @@ public class Pet {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (String line : lines) {
-                writer.write(line);
+                writer.write(line); 
                 writer.newLine();
             }
             System.out.println("Pet data successfully saved to file: " + fileName);
@@ -256,6 +257,12 @@ public class Pet {
      */
     public void useItem(Item item) {
         item.applyEffect(this);
+        System.out.println("Pet " + name + " used item: " + item.getName() + 
+                           " | Type: " + item.getType() + 
+                           " | Effectiveness: " + item.getEffectiveness() + "\n");
+    
+        // Print the updated stats after using the item
+        System.out.println("Updated Stats:\n" + this);
     }
 
     /**

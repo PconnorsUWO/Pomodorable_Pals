@@ -52,11 +52,11 @@ public class GameManager {
     }
     
     public void exercisePet(){
-        this.currentPet.setHappiness(Math.max(this.currentPet.getHappiness() + 5, 100));
+        this.currentPet.setHappiness(Math.min(this.currentPet.getHappiness() + 5, 100));
     }
 
     public void sleepPet(){
-        this.currentPet.setSleep(Math.max(this.currentPet.getSleep() + 5, 100));
+        this.currentPet.setSleep(Math.min(this.currentPet.getSleep() + 5, 100));
     }
 
     /**
@@ -64,6 +64,7 @@ public class GameManager {
      */
     public void startGame() {
         System.out.println("Starting game with pet: " + currentPet.getName());
+        
         System.out.println(currentInventory); // Optional: Display loaded inventory
     }
 
@@ -141,14 +142,17 @@ public class GameManager {
         return currentStatisticsTracker;
     }
 
-
+    public void visitVet(){
+        this.currentPet.setHealth(100);
+    }
+    
     /**
      * Gives an item from the inventory to the pet. The item type must match an item in the inventory.
      *
      * @param itemType The type of item to give (e.g., "Food").
      */
-    public void givePet(String itemType) {
-        Item inventoryItem = this.currentInventory.getItem(itemType);
+    public void givePet(String itemName) {
+        Item inventoryItem = this.currentInventory.getItem(itemName);
         if (inventoryItem != null) {
             this.currentInventory.removeItem(inventoryItem);
             this.currentPet.useItem(inventoryItem);
@@ -225,9 +229,9 @@ public class GameManager {
 
             if(foodOrGift == 1){
                 Item giftArray[] = new Item[3];
-                giftArray[0] = new Item("Keychain", "gift", 10);
-                giftArray[1] = new Item("Toy", "gift", 25);
-                giftArray[2] = new Item("Playset", "fgift", 50);
+                giftArray[0] = new Item("Plushy", "gift", 10);
+                giftArray[1] = new Item("Ball", "gift", 25);
+                giftArray[2] = new Item("Bell", "gift", 50);
                 Random rand = new Random();
                 int randNum = rand.nextInt(3);
                 System.out.println("Gift given: " + giftArray[randNum].getName());
